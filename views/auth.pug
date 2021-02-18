@@ -1,0 +1,18 @@
+include layout
+
+<h1>Provide authentication and authorization to your applications running inside pods on EKS</h1>
+<p>Under this section, we are using the AWS S3 node.js SDK in order to read a list of S3 buckets. This will be used to demo how to use <a target="blank" href="https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html">IAM Roles for Service Account</a> (to provide specific permissions to pods running in EKS).</p>
+
+if buckets.length
+    <div class="alert alert-primary">
+        <p>If you see this message, then your application successfully authenticated to AWS S3 API to list buckets. If you do not see any bucket, you should create a bucket inside the same region as you configured this application.</p>
+    </div>
+    <ul class="list-group">
+    each bucket in buckets
+        <li class="list-group-item">#{bucket.Name}</li>
+    </ul>
+else
+    <div class="alert alert-warning">
+        <p>If you see this message, then the application was not able to retrieve your S3 buckets, see following error:</p>
+        <p>#{error}</p>
+    </div>
